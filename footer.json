@@ -1,0 +1,52 @@
+{
+    "leyend": "Tu sitio web de confianza para encontrar los mejores productos y servicios.",
+    "members": [
+        {
+            "name": "Juan Pérez",
+            "role": "Fundador y CEO",
+            "socials": {
+                "linkedin": "https://www.linkedin.com/in/juanperez",
+                "twitter": "https://twitter.com/juanperez"
+            }
+        },
+        {
+            "name": "Ana Gómez",
+            "role": "Directora de Marketing",
+            "socials": {
+                "linkedin": "https://www.linkedin.com/in/anagomez",
+                "twitter": "https://twitter.com/anagomez"
+            }
+        }
+    ],
+    "Enterprise": {
+        "name": "Tech Solutions S.A.",
+        "address": "Calle Falsa 123, Ciudad, País",
+        "contact": {
+            "email": "ad"
+        }
+    },
+    "help": {
+        "numbers": [
+            {
+                "name": "Soporte Técnico",
+                "number": "+1234567890"
+            },
+            {
+                "name": "Atención al Cliente",
+                "number": "+0987654321"
+            }
+        ]
+    },
+    "partners": [
+        {
+            "name": "Vercel",
+            "logo": "https://i.pinimg.com/originals/17/dd/84/17dd84fe75c8ba1ca26aa18b3570b65b.png",
+            "website": "https://example.com/a"
+        },
+        {
+            "name": "MongoDB",
+            "logo": "https://www.thehotskills.com/wp-content/uploads/2019/07/mongodb-logo-png.png",
+            "website": "https://example.com/b"
+        }
+    ]
+}

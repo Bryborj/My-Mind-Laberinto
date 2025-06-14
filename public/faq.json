@@ -1,0 +1,27 @@
+[
+  {
+    "question":"¿Qué es My Mind?",
+    "answer": "My Mind es una agenda y journalist app enfocada al fortalecimiento de hábitos y creatividad dando seguimiento a nuestras actividades cotidianas. Cuenta con la función Laberinto donde mediante entradas de texto se entrena un modelo de lenguaje que se amolda especificamente a los hábitos, rutinas e intereses del usuario para complementar con sugerencias personalizadas enfocadas al mejoramiento de sus habilidades."
+  },
+  {
+    "question": "¿Qué puedo ingresar a la plataforma?",
+    "answer": "Puedes ingresar todo, en el calendario ingresa tus hábitos (ejercicio, clases de guitarra, comida con amigos, etc.), en el panel de escritura ingresa ideas (opiniones, pensamientos, gustos, etc.)"
+    
+  },
+  {
+    "question": "¿Cómo funciona el panel Leer en Laberinto",
+    "answer": "Da click en el botón Leer y tu asistente de IA va a generar una sugerencia para mejorar un hábito, una idea basada en tus notas previas, una pregunta relacionada a tus metas... el asistente de IA funciona como un reflejo de tu mente, asegurate de hacer muchas entradas para entrenarlo a tus intereses"
+  },
+  {
+    "question": "¿Puedo editar mis entradas?",
+    "answer": "Sí, puedes editar o eliminar tus entradas en cualquier momento desde tu panel personal."
+  },
+  {
+    "question": "¿La información es privada?",
+    "answer": "Toda la información que registres es completamente privada y segura."
+  },
+  {
+    "question": "¿Cómo contacto soporte?",
+    "answer": "Puedes contactarnos a través del formulario de contacto o los números de ayuda en el pie de página."
+  }
+]
