@@ -12,7 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import LayoutHome from "@/layouts/Layout-Home";
 //import About from "./pages/About";
 
-const NotFound = () => <h1>404 - Page Not Found</h1>;
+    const NotFound = () => <h1 className="text-center py-10 text-2xl font-bold">404 - Página No Encontrada</h1>; // Spanish text
 
 function App() {
   return (

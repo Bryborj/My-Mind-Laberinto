@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+// src/components/Footer.tsx
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
+import useStaticJSONFetch from "@/hooks/useStaticJSONFetch"; // Ensure correct path
 
 interface FooterData {
   leyend: string;
@@ -12,19 +13,11 @@ interface FooterData {
 }
 
 export default function Footer() {
-  const [data, setData] = useState<FooterData | null>(null);
+  const { data, loading, error } = useStaticJSONFetch<FooterData>("/footer.json");
 
-  useEffect(() => {
-    fetch("/footer.json")
-      .then((res) => {
-        if (!res.ok) throw new Error("Error al cargar footer.json");
-        return res.json();
-      })
-      .then(setData)
-      .catch((err) => console.error("Footer error:", err));
-  }, []);
-
-  if (!data) return null;
+  if (loading) return <footer className="w-full mt-10 py-4 text-center">Cargando pie de página...</footer>; // Spanish text
+  if (error) return <footer className="w-full mt-10 py-4 text-center text-red-600">Error al cargar el pie de página.</footer>; // Spanish text
+  if (!data) return null; // No data to display
 
   return (
     <footer className="w-full mt-10 border-t border-border bg-card text-card-foreground">
