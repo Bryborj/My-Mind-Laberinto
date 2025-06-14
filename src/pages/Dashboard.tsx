@@ -1,5 +1,5 @@
-//import LayoutDashboard from "@/layouts/Layout-Dashboard";
-import { AppContentCard } from "@/components/ui/AppContentCart";
+// src/pages/Dashboard.tsx
+import { AppContentCard } from "@/components/ui/AppContentCard";
 import { AppContentBlock } from "@/components/ui/AppContentBlock";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
@@ -11,10 +11,11 @@ export default function Dashboard() {
     document.title = "Dashboard | My mind";
   }, []);
 
-  // Estado para controlar el textarea y la visibilidad
   const [editando, setEditando] = useState(false);
   const [texto, setTexto] = useState("");
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const textAreaId = "dashboardTextoEntrada"; // ID for Textarea
+
   return (
     <>
       <div className="min-h-[calc(100vh-120px)] p-4 sm:p-6 lg:p-8">
@@ -28,9 +29,9 @@ export default function Dashboard() {
           >
             <AppContentCard
               variant="green"
-              className="min-h-[400px] lg:min-h-[500px]"
+              className="min-h-[400px] lg:min-h-[500px]" // AppContentCard already has flex-col and gap
             >
-              <AppContentBlock
+              <AppContentBlock // Calendar container
                 size="full"
                 variant="rectangle"
                 className="w-full min-h-0 min-w-0 flex items-center justify-center"
@@ -56,11 +57,7 @@ export default function Dashboard() {
                   </motion.div>
                 </AppContentBlock>
               </AppContentBlock>
-              <AppContentBlock
-                size="md"
-                variant="pill"
-              ></AppContentBlock>
-              <AppContentBlock size="md" variant="pill" />
+              {/* Empty AppContentBlocks removed, rely on AppContentCard's gap */}
             </AppContentCard>
           </motion.div>
 
@@ -75,34 +72,30 @@ export default function Dashboard() {
               variant="blue"
               className="min-h-[400px] lg:min-h-[500px]"
             >
-              <AppContentBlock
+              <AppContentBlock // "Laberinto" title block
                 color="green"
-                size="md"
+                size="md" // This sets a fixed height, ensure content fits or adjust
                 variant="pill"
-                className="hover:bg-accent "
+                className="hover:bg-accent" // Removed cursor-pointer as it's not directly interactive itself
               >
                 <div>
                   <h2 className="text-lg font-semibold">Laberinto</h2>
                 </div>
               </AppContentBlock>
-              <AppContentBlock
-                color="green"
+              <AppContentBlock // Textarea container block
+                color="green" // This seems to be a style choice, not interactive itself
                 size="full"
                 variant="rectangle"
-                className="bg-white"
+                className="bg-white p-4" // Added padding for content
               >
-                {/* Si no está editando y no hay texto, muestra el mensaje centrado */}
                 {!editando && !texto && (
-                  <div
-                    className="flex flex-col items-center justify-center h-24 cursor-pointer"
+                  <button // Changed div to button
+                    className="flex flex-col items-center justify-center h-24 text-gray-700 text-sm w-full text-center"
                     onClick={() => setEditando(true)}
                   >
-                    <p className="text-sm text-gray-700">
-                      Hola, escribeme lo que paso hoy en tu dia.
-                    </p>
-                  </div>
+                    Hola, escríbeme lo que pasó hoy en tu día.
+                  </button>
                 )}
-                {/* Si está editando o ya hay texto, muestra el textarea y el mensaje arriba */}
                 {(editando || texto) && (
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}
@@ -110,14 +103,15 @@ export default function Dashboard() {
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     className="flex flex-col gap-2 w-full"
                   >
-                    <p className="text-xs text-gray-500 mb-1">
-                      Hola, escribeme lo que paso hoy en tu dia.
-                    </p>
+                    <label htmlFor={textAreaId} className="text-xs text-gray-500 mb-1">
+                      Hola, escríbeme lo que pasó hoy en tu día.
+                    </label>
                     <Textarea
+                      id={textAreaId} // Added id
                       autoFocus
                       value={texto}
                       onChange={(e) => setTexto(e.target.value)}
-                      placeholder="Type your message here..."
+                      placeholder="Escribe tu mensaje aquí..."
                       className="w-full h-24 resize-none"
                       onBlur={() => {
                         if (!texto) setEditando(false);
@@ -126,12 +120,9 @@ export default function Dashboard() {
                   </motion.div>
                 )}
               </AppContentBlock>
-              <AppContentBlock
-                color="green"
-                size="full"
-                variant="rectangle"
-                className="bg-white"
-              />
+              {/* The third AppContentBlock was empty, if it was for structure, ensure AppContentCard's flex handles it */}
+              {/* If the last AppContentBlock was meant to be a specific empty styled area, it can be re-added with purpose */}
+              {/* For now, assuming it was for spacing or an unused placeholder */}
             </AppContentCard>
           </motion.div>
         </div>

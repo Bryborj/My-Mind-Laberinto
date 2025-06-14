@@ -1,3 +1,4 @@
+// src/components/Header.tsx
 import React, { useState } from "react";
 import {
   NavigationMenu,
@@ -30,7 +31,6 @@ export default function Header() {
       className="w-full bg-[var(--color-card)] text-[var(--color-card-foreground)] border-b border-[var(--color-border)] fixed top-0 left-0 z-50 shadow-lg"
     >
       <nav className="max-w-[1200px] mx-auto px-4 py-2 flex items-center justify-between relative">
-        {/* Responsive: menú hamburguesa en móvil */}
         <motion.div
           initial={{ x: -60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -41,11 +41,11 @@ export default function Header() {
             className="p-2 rounded-md hover:bg-[var(--my-mind-p1-green-color)] focus:outline-none"
             onClick={() => setOpen(!open)}
             aria-label="Abrir menú"
+            aria-expanded={open} // Added aria-expanded
           >
             <Menu size={24} />
           </button>
         </motion.div>
-        {/* Navegación a la izquierda, oculta en móvil */}
         <motion.div
           initial={{ x: -80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -55,10 +55,10 @@ export default function Header() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuLink>
+                <NavigationMenuLink asChild> {/* Added asChild for proper Link integration */}
                   <Link
                     to="/"
-                    className={`flex items-center gap-2 hover:text-blue-500 transition-all ${
+                    className={`flex items-center gap-2 hover:text-blue-500 transition-all p-2 ${ // Added padding for better click area
                       location.pathname === "/" ? "glass-active" : ""
                     }`}
                   >
@@ -70,10 +70,10 @@ export default function Header() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink>
+                <NavigationMenuLink asChild> {/* Added asChild */}
                   <Link
                     to="/Dashboard"
-                    className={`flex items-center gap-2 transition-all ${
+                    className={`flex items-center gap-2 transition-all p-2 ${ // Added padding
                       location.pathname === "/Dashboard" ? "glass-active" : ""
                     }`}
                   >
@@ -85,32 +85,36 @@ export default function Header() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>
+                <NavigationMenuTrigger className="p-2"> {/* Added padding */}
                   <MoreHorizontal className="w-5 h-5" />
                   <span className="hidden md:inline-block text-sm font-semibold ml-1">
                     Más
                   </span>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <NavigationMenuLink>
-                    <Link
-                      to="/Dashboard"
-                      className={`flex items-center gap-2 transition-all ${
-                        location.pathname === "/Habits" ? "glass-active" : ""
-                      }`}
-                    >
-                      <AppWindow className="w-5 h-5" />
-                      <span className="hidden md:inline-block text-sm font-semibold">
-                        Habitos
-                      </span>
-                    </Link>
-                  </NavigationMenuLink>
+                  <ul className="p-2 w-[200px]"> {/* Added ul and some basic styling for content layout */}
+                    <li className="w-full">
+                      <NavigationMenuLink asChild> {/* Added asChild */}
+                        <Link
+                          to="/Habits" // Corrected link
+                          className={`flex items-center gap-2 transition-all p-2 w-full hover:bg-muted rounded-md ${
+                            location.pathname === "/Habits" ? "glass-active" : ""
+                          }`}
+                        >
+                          <AppWindow className="w-5 h-5" />
+                          <span className="text-sm font-semibold">
+                            Hábitos {/* Corrected spelling */}
+                          </span>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    {/* Add more links here if needed */}
+                  </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
         </motion.div>
-        {/* Menú móvil desplegable */}
         {open && (
           <motion.div
             initial={{ x: -100, opacity: 0 }}
@@ -135,13 +139,18 @@ export default function Header() {
               <AppWindow className="w-5 h-5" />
               <span className="text-sm font-semibold">App</span>
             </Link>
-            <div className="flex items-center gap-2 py-2">
-              <MoreHorizontal className="w-5 h-5" />
-              <span className="text-sm font-semibold">Más</span>
-            </div>
+            {/* Example for "Más" items in mobile - you might want to list them directly or have a sub-trigger */}
+            <Link
+              to="/Habits" // Corrected link
+              className="flex items-center gap-2 py-2"
+              onClick={() => setOpen(false)}
+            >
+              <AppWindow className="w-5 h-5" /> {/* Consider a different icon if appropriate */}
+              <span className="text-sm font-semibold">Hábitos</span> {/* Corrected spelling */}
+            </Link>
+            {/* The old "Más" div is removed as items are now directly linked or would need more complex mobile nav */}
           </motion.div>
         )}
-        {/* Perfil a la derecha, siempre visible y sobresaliendo del header */}
         <motion.div
           initial={{ x: 80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}

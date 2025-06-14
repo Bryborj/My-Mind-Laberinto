@@ -1,5 +1,7 @@
+// src/components/AccordionFaq.tsx
 import * as React from "react";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import useStaticJSONFetch from "@/hooks/useStaticJSONFetch"; // Ensure correct path
 
 type FaqItem = {
   question: string;
@@ -7,15 +9,11 @@ type FaqItem = {
 };
 
 export default function AccordionFaq() {
-  const [faqs, setFaqs] = React.useState<FaqItem[]>([]);
+  const { data: faqs, loading, error } = useStaticJSONFetch<FaqItem[]>("/faq.json");
 
-  React.useEffect(() => {
-    fetch("/faq.json")
-      .then((res) => res.json())
-      .then((data) => setFaqs(data));
-  }, []);
-
-  if (!faqs.length) return null;
+  if (loading) return <p className="text-center py-4">Cargando preguntas frecuentes...</p>; // Spanish text
+  if (error) return <p className="text-center py-4 text-red-600">Error al cargar las preguntas frecuentes. Por favor, inténtelo más tarde.</p>; // Spanish text
+  if (!faqs || faqs.length === 0) return null; // Or a message like "No FAQs available"
 
   return (
     <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto my-8">
